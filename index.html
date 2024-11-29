@@ -1,0 +1,951 @@
+<html><head><base href="." /><title>YouTube - Circa 2010</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+}
+
+#header {
+  background: #fafafa;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+}
+
+#logo {
+  width: 150px;
+  height: auto;
+}
+
+#search-container {
+  margin-left: 50px;
+  display: flex;
+  flex: 1;
+}
+
+#search-input {
+  width: 400px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px 0 0 3px;
+}
+
+#search-button {
+  padding: 5px 15px;
+  background: #f3f3f3;
+  border: 1px solid #ccc;
+  border-left: none;
+  border-radius: 0 3px 3px 0;
+  cursor: pointer;
+}
+
+#content-container {
+  display: flex;
+}
+
+#sidebar {
+  width: 200px;
+  padding: 15px;
+  background: #fff;
+  border-right: 1px solid #ddd;
+  min-height: calc(100vh - 61px);
+}
+
+.sidebar-section {
+  margin-bottom: 20px;
+}
+
+.sidebar-title {
+  font-weight: bold;
+  color: #333;
+  padding: 5px 0;
+  font-size: 13px;
+}
+
+.sidebar-item {
+  padding: 5px;
+  font-size: 12px;
+  color: #555;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.sidebar-item:hover {
+  background: #f1f1f1;
+}
+
+.sidebar-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  fill: #cc181e; /* YouTube Red color */
+}
+
+.category-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  fill: #cc181e; /* YouTube Red color */
+}
+
+#main-content {
+  flex: 1;
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+.video-card {
+  width: 200px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.video-thumbnail {
+  width: 100%;
+  height: 150px;
+  background: #eee;
+  position: relative;
+  overflow: hidden;
+}
+
+.video-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-duration {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 2px 4px;
+  font-size: 11px;
+  border-radius: 2px;
+}
+
+.video-info {
+  padding: 5px;
+}
+
+.video-title {
+  font-weight: bold;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.video-meta {
+  color: #666;
+  font-size: 11px;
+}
+
+.old-button {
+  background: linear-gradient(to bottom, #f0f0f0, #e1e1e1);
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.category-header {
+  width: 100%;
+  margin: 10px 0;
+  padding: 5px;
+  background: linear-gradient(to bottom, #f8f8f8, #f0f0f0);
+  border: 1px solid #ddd;
+  font-weight: bold;
+}
+
+.video-embed-container {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+  max-width: 1000px; /* Add max-width */
+  margin: 0 auto; /* Center the container */
+  justify-content: center; /* Center horizontally */
+}
+
+.video-player {
+  flex: 1;
+  max-width: 640px; /* Match iframe width */
+}
+
+.video-sidebar {
+  width: 300px;
+}
+
+.video-title-section {
+  margin: 10px 0;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  max-width: 640px; /* Ensure title section stays aligned */
+}
+
+.video-stats {
+  color: #666;
+  font-size: 12px;
+}
+
+.video-description {
+  margin-top: 10px;
+  max-width: 640px; /* Match video width */
+  word-wrap: break-word; /* Ensure long words break correctly */
+}
+
+.video-actions {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  max-width: 640px; /* Ensure actions stay aligned */
+}
+
+.rating-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.rating-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background: linear-gradient(to bottom, #ffffff, #f5f5f5);
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.rating-button:hover {
+  background: linear-gradient(to bottom, #f5f5f5, #e5e5e5);
+}
+
+.rating-button.active {
+  background: linear-gradient(to bottom, #e5e5e5, #d5d5d5);
+}
+
+.comments-section {
+  max-width: 640px;
+  margin: 20px 0;
+  padding: 10px;
+}
+
+.comment-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.comment-input {
+  flex: 1;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.comment-submit {
+  padding: 5px 15px;
+  background: linear-gradient(to bottom, #f8f8f8, #f0f0f0);
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.comment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.comment {
+  display: flex;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.comment-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  background: #ddd;
+}
+
+.comment-content {
+  flex: 1;
+}
+
+.comment-author {
+  font-weight: bold;
+  margin-bottom: 3px;
+  color: #333;
+}
+
+.comment-date {
+  color: #666;
+  font-size: 11px;
+  margin-left: 5px;
+}
+
+.comment-text {
+  font-size: 13px;
+  color: #333;
+  margin-top: 3px;
+}
+
+/* Add these new styles for search results and channel pages */
+.search-results {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.search-header {
+  font-size: 16px;
+  color: #333;
+  padding: 10px 0;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.search-filters {
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+
+.search-video-result {
+  display: flex;
+  margin-bottom: 20px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.search-video-result:hover {
+  background: #f8f8f8;
+}
+
+.channel-result {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid #e8e8e8;
+  cursor: pointer;
+}
+
+.channel-result:hover {
+  background: #f8f8f8;
+}
+
+.channel-thumbnail img {
+  width: 88px;
+  height: 88px;
+  border-radius: 44px;
+  margin-right: 15px;
+}
+
+.channel-page {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.channel-header {
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.channel-banner {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.channel-banner img {
+  width: 100%;
+  height: auto;
+}
+
+.channel-uploads {
+  padding: 20px;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.search-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+</style>
+<script>
+const API_KEY = 'AIzaSyA2rtyN4Lwb8eSuM98b4qVvm6BIvyNb8BE';
+const YT_API_BASE_URL = 'https://www.googleapis.com/youtube/v3';
+
+async function searchVideos(query = '') {
+  try {
+    const response = await fetch(`${YT_API_BASE_URL}/search?part=snippet&maxResults=24&type=video&q=${encodeURIComponent(query)}&key=${API_KEY}`);
+    const data = await response.json();
+    const videoIds = data.items.map(item => item.id.videoId).join(',');
+    
+    // Get additional video details
+    const videoDetailsResponse = await fetch(`${YT_API_BASE_URL}/videos?part=snippet,statistics,contentDetails&id=${videoIds}&key=${API_KEY}`);
+    const videoDetails = await videoDetailsResponse.json();
+    displayVideos(videoDetails.items);
+  } catch (error) {
+    console.error('Error searching videos:', error);
+    displayFallbackContent();
+  }
+}
+
+async function searchAll(query) {
+  try {
+    // Search for both videos and channels
+    const [videoResponse, channelResponse] = await Promise.all([
+      fetch(`${YT_API_BASE_URL}/search?part=snippet&maxResults=20&type=video&q=${encodeURIComponent(query)}&key=${API_KEY}`),
+      fetch(`${YT_API_BASE_URL}/search?part=snippet&maxResults=5&type=channel&q=${encodeURIComponent(query)}&key=${API_KEY}`)
+    ]);
+    
+    const videoData = await videoResponse.json();
+    const channelData = await channelResponse.json();
+    
+    displaySearchResults(videoData.items, channelData.items, query);
+  } catch (error) {
+    console.error('Error searching:', error);
+    displayFallbackContent();
+  }
+}
+
+async function getTrendingVideos() {
+  try {
+    const response = await fetch(`${YT_API_BASE_URL}/videos?part=snippet,statistics,contentDetails&chart=mostPopular&maxResults=24&regionCode=US&key=${API_KEY}`);
+    const data = await response.json();
+    if (data.items && data.items.length > 0) {
+      displayVideos(data.items);
+    } else {
+      displayFallbackContent();
+    }
+  } catch (error) {
+    console.error('Error fetching trending videos:', error);
+    displayFallbackContent();
+  }
+}
+
+async function getVideosByCategory(categoryId) {
+  try {
+    const response = await fetch(`${YT_API_BASE_URL}/videos?part=snippet,statistics,contentDetails&videoCategoryId=${categoryId}&chart=mostPopular&maxResults=24&regionCode=US&key=${API_KEY}`);
+    const data = await response.json();
+    if (data.items && data.items.length > 0) {
+      displayVideos(data.items, categoryId);
+    } else {
+      displayFallbackContent();
+    }
+  } catch (error) {
+    console.error('Error fetching category videos:', error);
+    displayFallbackContent();
+  }
+}
+
+async function getVideoComments(videoId) {
+  try {
+    const response = await fetch(`${YT_API_BASE_URL}/commentThreads?part=snippet&videoId=${videoId}&maxResults=20&key=${API_KEY}`);
+    const data = await response.json();
+    return data.items || [];
+  } catch (error) {
+    console.error('Error fetching comments:', error);
+    return [];
+  }
+}
+
+async function displayChannelPage(channelId) {
+  try {
+    // Get channel details and uploads
+    const [channelResponse, uploadsResponse] = await Promise.all([
+      fetch(`${YT_API_BASE_URL}/channels?part=snippet,statistics,brandingSettings&id=${channelId}&key=${API_KEY}`),
+      fetch(`${YT_API_BASE_URL}/search?part=snippet&channelId=${channelId}&order=date&maxResults=25&type=video&key=${API_KEY}`)
+    ]);
+    
+    const channelData = await channelResponse.json();
+    const uploadsData = await uploadsResponse.json();
+    
+    if (channelData.items && channelData.items.length > 0) {
+      const channel = channelData.items[0];
+      const mainContainer = document.getElementById('content-container');
+      
+      mainContainer.innerHTML = `
+        <div class="channel-page">
+          <div class="channel-header">
+            <div class="channel-banner" style="background-color: #e8e8e8; height: 100px;">
+              ${channel.brandingSettings.image ? `<img src="${channel.brandingSettings.image.bannerExternalUrl}" alt="Channel Banner">` : ''}
+            </div>
+            <div class="channel-info">
+              <h1>${channel.snippet.title}</h1>
+              <div class="channel-stats">
+                ${formatNumber(channel.statistics.subscriberCount)} subscribers • 
+                ${formatNumber(channel.statistics.videoCount)} videos
+              </div>
+              <button class="old-button">Subscribe</button>
+            </div>
+          </div>
+          <div class="channel-content">
+            <div class="channel-uploads">
+              <h3>Uploads</h3>
+              <div class="video-grid" id="channel-videos"></div>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      const videoGrid = document.getElementById('channel-videos');
+      uploadsData.items.forEach(video => {
+        const videoCard = document.createElement('div');
+        videoCard.className = 'video-card';
+        videoCard.innerHTML = `
+          <div class="video-thumbnail">
+            <img src="${video.snippet.thumbnails.medium.url}" alt="${video.snippet.title}">
+          </div>
+          <div class="video-info">
+            <div class="video-title">${video.snippet.title}</div>
+            <div class="video-meta">
+              ${new Date(video.snippet.publishedAt).toLocaleDateString()}
+            </div>
+          </div>
+        `;
+        videoCard.onclick = () => {
+          navigateToVideo(video);
+        };
+        videoGrid.appendChild(videoCard);
+      });
+    }
+  } catch (error) {
+    console.error('Error loading channel:', error);
+    displayFallbackContent();
+  }
+}
+
+function updateCategoryHeader(categoryName) {
+  const headers = document.querySelectorAll('.category-header');
+  headers.forEach(header => {
+    header.textContent = categoryName;
+  });
+}
+
+function formatNumber(num) {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function formatDuration(seconds) {
+  if (!seconds) return "0:00";
+  
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const remainingSeconds = seconds % 60;
+  
+  let result = '';
+  if (hours > 0) result += `${hours}:`;
+  result += `${minutes}:`;
+  result += remainingSeconds.toString().padStart(2, '0');
+  
+  return result;
+}
+
+function formatViewCount(views) {
+  if (views >= 1000000) {
+    return `${(views / 1000000).toFixed(1)}M`;
+  } else if (views >= 1000) {
+    return `${(views / 1000).toFixed(1)}K`;
+  }
+  return views;
+}
+
+function displayVideos(videos, categoryName = 'Most Popular') {
+  const mainContent = document.getElementById('main-content');
+  mainContent.innerHTML = '';
+
+  const categoryHeader = document.createElement('div');
+  categoryHeader.className = 'category-header';
+  categoryHeader.textContent = categoryName;
+  mainContent.appendChild(categoryHeader);
+
+  videos.forEach(video => {
+    const videoCard = document.createElement('div');
+    videoCard.className = 'video-card';
+    videoCard.innerHTML = `
+      <div class="video-thumbnail">
+        <img src="${video.snippet.thumbnails.medium.url}" alt="${video.snippet.title}">
+        <div class="video-duration">${formatDuration(convertISO8601ToSeconds(video.contentDetails.duration))}</div>
+      </div>
+      <div class="video-info">
+        <div class="video-title">${video.snippet.title}</div>
+        <div class="video-meta">
+          by ${video.snippet.channelTitle}<br>
+          ${formatViewCount(video.statistics.viewCount)} views • 
+          ${new Date(video.snippet.publishedAt).toLocaleDateString()}
+        </div>
+      </div>
+    `;
+    videoCard.onclick = () => {
+      navigateToVideo(video);
+    };
+    mainContent.appendChild(videoCard);
+  });
+
+  attachSearchListeners();
+}
+
+function convertISO8601ToSeconds(duration) {
+  const match = duration.match(/PT(\d+H)?(\d+M)?(\d+S)?/);
+  const hours = (parseInt(match[1]) || 0);
+  const minutes = (parseInt(match[2]) || 0);
+  const seconds = (parseInt(match[3]) || 0);
+  return hours * 3600 + minutes * 60 + seconds;
+}
+
+function navigateToVideo(video) {
+  const mainContainer = document.getElementById('content-container');
+  mainContainer.innerHTML = `
+    <div class="video-embed-container">
+      <div class="video-player">
+        <iframe 
+          width="640" 
+          height="360" 
+          src="https://www.youtube-nocookie.com/embed/${video.id}" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+        <div class="video-title-section">
+          <div class="video-title-large">${video.snippet.title}</div>
+          <div class="video-stats">
+            ${formatViewCount(video.statistics.viewCount)} views • 
+            Added ${new Date(video.snippet.publishedAt).toLocaleDateString()}
+          </div>
+        </div>
+        <div class="video-actions">
+          <div class="rating-buttons">
+            <button class="rating-button" onclick="this.classList.toggle('active')">
+              <svg width="14" height="14" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/>
+              </svg>
+              Like
+            </button>
+            <button class="rating-button" onclick="this.classList.toggle('active')">
+              <svg width="14" height="14" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"/>
+              </svg>
+              Dislike
+            </button>
+          </div>
+        </div>
+        <div class="video-description">
+          ${video.snippet.description?.replace(/\n/g, '<br>') || 'No description available.'}
+        </div>
+      </div>
+      <div class="video-sidebar">
+        <div class="category-header">Related Videos</div>
+        <div id="related-videos"></div>
+      </div>
+    </div>
+  `;
+
+  // Load related videos (using trending as placeholder)
+  fetch(`${YT_API_BASE_URL}/videos?part=snippet,statistics,contentDetails&chart=mostPopular&maxResults=10&regionCode=US&key=${API_KEY}`)
+    .then(response => response.json())
+    .then(data => {
+      const relatedContainer = document.getElementById('related-videos');
+      data.items.forEach(relatedVideo => {
+        const videoEl = document.createElement('div');
+        videoEl.className = 'video-card';
+        videoEl.innerHTML = `
+          <div class="video-thumbnail">
+            <img src="${relatedVideo.snippet.thumbnails.medium.url}" alt="${relatedVideo.snippet.title}">
+            <div class="video-duration">${formatDuration(convertISO8601ToSeconds(relatedVideo.contentDetails.duration))}</div>
+          </div>
+          <div class="video-info">
+            <div class="video-title">${relatedVideo.snippet.title}</div>
+            <div class="video-meta">
+              by ${relatedVideo.snippet.channelTitle}<br>
+              ${formatViewCount(relatedVideo.statistics.viewCount)} views
+            </div>
+          </div>
+        `;
+        videoEl.onclick = () => navigateToVideo(relatedVideo);
+        relatedContainer.appendChild(videoEl);
+      });
+    })
+    .catch(error => console.error('Error loading related videos:', error));
+
+  // Comments section
+  const mainSection = document.querySelector('.video-player');
+  mainSection.innerHTML += `
+    <div class="comments-section">
+      <h3>Comments</h3>
+      <div class="comment-form">
+        <input type="text" class="comment-input" placeholder="Add a comment...">
+        <button class="comment-submit" onclick="simulateComment(this)">Comment</button>
+      </div>
+      <div class="comment-list">
+        <!-- Comments will be loaded here -->
+      </div>
+    </div>
+  `;
+
+  // Load real comments
+  getVideoComments(video.id).then(comments => {
+    const commentList = document.querySelector('.comment-list');
+    comments.forEach(comment => {
+      const commentData = comment.snippet.topLevelComment.snippet;
+      commentList.innerHTML += `
+        <div class="comment">
+          <div class="comment-avatar"></div>
+          <div class="comment-content">
+            <div class="comment-author">
+              ${commentData.authorDisplayName}
+              <span class="comment-date">${new Date(commentData.publishedAt).toLocaleDateString()}</span>
+            </div>
+            <div class="comment-text">${commentData.textDisplay}</div>
+          </div>
+        </div>
+      `;
+    });
+  });
+
+  attachSearchListeners();
+}
+
+function simulateComment(button) {
+  const input = button.previousElementSibling;
+  const commentText = input.value.trim();
+  
+  if (commentText) {
+    const commentList = document.querySelector('.comment-list');
+    const newComment = document.createElement('div');
+    newComment.className = 'comment';
+    newComment.innerHTML = `
+      <div class="comment-avatar"></div>
+      <div class="comment-content">
+        <div class="comment-author">
+          You
+          <span class="comment-date">Just now</span>
+        </div>
+        <div class="comment-text">${commentText}</div>
+      </div>
+    `;
+    
+    commentList.insertBefore(newComment, commentList.firstChild);
+    input.value = '';
+  }
+}
+
+function displayFallbackContent() {
+  const mainContent = document.getElementById('main-content');
+  if (!mainContent) {
+    console.error('Main content element not found');
+    return;
+  }
+  
+  mainContent.innerHTML = `
+    <div class="category-header">Most Popular</div>
+    ${Array(12).fill(0).map(() => `
+      <div class="video-card">
+        <div class="video-thumbnail">
+          <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #e6e6e6, #f0f0f0);"></div>
+          <div class="video-duration">0:00</div>
+        </div>
+        <div class="video-info">
+          <div class="video-title" style="background: #f0f0f0; width: 90%; height: 14px;"></div>
+          <div class="video-meta" style="background: #f6f6f6; width: 60%; height: 12px; margin-top: 5px;"></div>
+          <div class="video-meta" style="background: #f6f6f6; width: 40%; height: 12px; margin-top: 5px;"></div>
+        </div>
+      </div>
+    `).join('')}
+  `;
+}
+
+function displaySearchResults(videos, channels, query) {
+  const mainContent = document.getElementById('main-content');
+  mainContent.innerHTML = `
+    <div class="search-results">
+      <div class="search-header">
+        Search results for: "${query}"
+      </div>
+      <div class="search-filters">
+        <button class="old-button active">All Results</button>
+        <button class="old-button">Videos</button>
+        <button class="old-button">Channels</button>
+      </div>
+      <div class="search-content">
+        ${channels.map(channel => `
+          <div class="channel-result" onclick="displayChannelPage('${channel.snippet.channelId}')">
+            <div class="channel-thumbnail">
+              <img src="${channel.snippet.thumbnails.default.url}" alt="${channel.snippet.title}">
+            </div>
+            <div class="channel-info">
+              <div class="channel-name">${channel.snippet.title}</div>
+              <div class="channel-description">${channel.snippet.description}</div>
+            </div>
+            <button class="old-button">Subscribe</button>
+          </div>
+        `).join('')}
+        ${videos.map(video => `
+          <div class="search-video-result" onclick="navigateToVideo({id: '${video.id.videoId}', snippet: ${JSON.stringify(video.snippet)}})">
+            <div class="video-thumbnail">
+              <img src="${video.snippet.thumbnails.medium.url}" alt="${video.snippet.title}">
+            </div>
+            <div class="video-info">
+              <div class="video-title">${video.snippet.title}</div>
+              <div class="video-meta">
+                by ${video.snippet.channelTitle}<br>
+                ${new Date(video.snippet.publishedAt).toLocaleDateString()}
+              </div>
+              <div class="video-description">
+                ${video.snippet.description}
+              </div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+
+  attachSearchListeners();
+}
+
+// Modify the search function to be available globally
+function search(event) {
+  // Prevent form submission if triggered by form
+  if (event) {
+    event.preventDefault();
+  }
+  
+  const query = document.getElementById('search-input').value.trim();
+  if (query) {
+    searchAll(query);
+  } else {
+    getTrendingVideos();
+  }
+}
+
+// Add event listeners whenever we update the page content
+function attachSearchListeners() {
+  const searchButton = document.getElementById('search-button');
+  const searchInput = document.getElementById('search-input');
+  
+  if (searchButton) {
+    // Remove existing listeners to prevent duplicates
+    searchButton.replaceWith(searchButton.cloneNode(true));
+    document.getElementById('search-button').addEventListener('click', search);
+  }
+  
+  if (searchInput) {
+    // Remove existing listeners to prevent duplicates
+    searchInput.replaceWith(searchInput.cloneNode(true));
+    document.getElementById('search-input').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        search(e);
+      }
+    });
+  }
+}
+
+// Update the DOMContentLoaded event listener
+document.addEventListener('DOMContentLoaded', () => {
+  // Initialize with trending videos
+  getTrendingVideos();
+  
+  // Attach initial search listeners
+  attachSearchListeners();
+});
+</script>
+</head>
+<body>
+<div id="header">
+  <a href="#" onclick="getTrendingVideos(); return false;">
+    <img src="https://kh8iz48s6troowe9cb0d.c.websim.ai/kisspng-youtube-logo-sign-old-party-5b33b69b317c25.9189308215301157392027.png" alt="YouTube" id="logo">
+  </a>
+  <div id="search-container">
+    <input type="text" id="search-input" placeholder="Search">
+    <button id="search-button">Search</button>
+  </div>
+</div>
+
+<div id="content-container">
+  <div id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">Browse</div>
+      <a href="https://youtube.com/feed/trending" class="sidebar-item">
+        <svg class="sidebar-icon" viewBox="0 0 24 24">
+          <path d="M12 2L4 8v12h16V8L12 2zm0 15l-4-4h8l-4 4z"/>
+        </svg>
+        Trending
+      </a>
+      <a href="https://youtube.com/feed/subscriptions" class="sidebar-item">
+        <svg class="sidebar-icon" viewBox="0 0 24 24">
+          <path d="M20 8H4V6h16v2zm-2-6H6v2h12V2zm4 10v8c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2v-8c0-1.1.9-2 2-2h16c1.1 0 2 .9 2 2zm-6 4l-6-3.27v6.53L16 16z"/>
+        </svg>
+        Subscriptions
+      </a>
+      <a href="https://youtube.com/playlist?list=WL" class="sidebar-item">
+        <svg class="sidebar-icon" viewBox="0 0 24 24">
+          <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0-2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 12.5v-9l6 4.5-6 4.5z"/>
+        </svg>
+        Watch Later
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">Categories</div>
+      <a href="#" onclick="getVideosByCategory(20); updateCategoryHeader('Gaming'); return false;" class="sidebar-item">
+        <svg class="category-icon" viewBox="0 0 24 24">
+          <path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-3c-.83 0-1.5-.67-1.5-1.5S18.67 9 19.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+        </svg>
+        Gaming
+      </a>
+      <a href="#" onclick="getVideosByCategory(10); updateCategoryHeader('Music'); return false;" class="sidebar-item">
+        <svg class="category-icon" viewBox="0 0 24 24">
+          <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+        </svg>
+        Music
+      </a>
+      <a href="#" onclick="getVideosByCategory(17); updateCategoryHeader('Sports'); return false;" class="sidebar-item">
+        <svg class="category-icon" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+        </svg>
+        Sports
+      </a>
+      <a href="#" onclick="getVideosByCategory(25); updateCategoryHeader('News'); return false;" class="sidebar-item">
+        <svg class="category-icon" viewBox="0 0 24 24">
+          <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-4 3h4v4h-4V7zm0 6h4v4h-4v-4zM4 7h10v10H4V7z"/>
+        </svg>
+        News
+      </a>
+      <a href="#" onclick="getVideosByCategory(30); updateCategoryHeader('Movies'); return false;" class="sidebar-item">
+        <svg class="category-icon" viewBox="0 0 24 24">
+          <path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/>
+        </svg>
+        Movies
+      </a>
+    </div>
+  </div>
+
+  <div id="main-content">
+    <!-- Videos will be populated here -->
+  </div>
+</div>
+</body></html>
